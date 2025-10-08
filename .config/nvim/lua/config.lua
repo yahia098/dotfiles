@@ -10,7 +10,8 @@ local highlight = {
     "RainbowGreen",
     "RainbowViolet",
     "RainbowCyan",
-}
+},
+require("telescope").setup()
 local hooks = require "ibl.hooks"
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
     vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
@@ -28,9 +29,19 @@ require("ibl").setup {
 vim.lsp.config("clangd",{capabilities = require("cmp_nvim_lsp").default_capabilities(),})
 vim.lsp.enable({"clangd",})
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "cpp", "c", "lua" },
+  ensure_installed = { "cpp", "c", "lua","python","rust" },
   highlight = { enable = true },
 })
+require("nvim-tree").setup({
+    update_focused_file = {
+        enable = true,
+        update_cwd = true,},
+    filters = {
+        dotfiles = true,	
+	    git_clean = false,
+        no_buffer = false,},
+})
+
 local cmp = require("cmp")
 cmp.setup({
   snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
@@ -48,6 +59,6 @@ cmp.setup({
 })
 
 require("dashboard").setup({
-    theme = "doom",
+   theme = "doom",
 
 })
