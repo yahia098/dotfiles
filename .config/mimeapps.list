@@ -1,0 +1,5 @@
+[Default Applications]
+video/webm=vlc.desktop
+
+[Added Associations]
+video/webm=vlc.desktop;

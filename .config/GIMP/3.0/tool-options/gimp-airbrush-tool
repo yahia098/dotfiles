@@ -1,0 +1,14 @@
+# GIMP gimp-airbrush-tool options
+
+(foreground
+    (color "HSVA float" 16 "UUU\77\236\330B\77\236\47\55\77\0\0\200\77" 0))
+(brush "2. Hardness 025")
+(dynamics "Pressure Size")
+(pattern "Blue Web")
+(gradient "FG to BG (RGB)")
+(palette "Color History")
+(brush-size 8)
+(brush-spacing 0.050000000000000003)
+(brush-hardness 0.25)
+
+# end of gimp-airbrush-tool options

@@ -1,0 +1,171 @@
+include catppuccin-mocha
+set $mod Mod4
+set $term ghostty
+set $menu wofi --show drun
+set $screenshot grim ~/Pictures/Screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $screenclip slurp | grim -g - ~/Pictures/Screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+output 1920x1080@144Hz
+##############theme########
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
+###SWAYFX
+#corner_radius 5
+#blur enable
+#blur_xray disable 
+#blur_passes 1 
+#blur_noise 0.2
+#shadows enable 
+#default_dim_inactive 0.85
+
+#bar {
+#  colors {
+#    background         $base
+#    statusline         $text
+#    focused_statusline $text
+#    focused_separator  $base
+#
+#    # target           border bg        text
+#    focused_workspace  $base  $mauve    $crust
+#    active_workspace   $base  $surface2 $text
+#    inactive_workspace $base  $base     $text
+#    urgent_workspace   $base  $red      $crust
+#  }
+#}
+###########################
+set $ws1   1
+set $ws2   2
+set $ws3   3
+set $ws4   4
+set $ws5   5
+font JetBrainsMono:Sans 12
+default_border pixel 5
+default_floating_border normal
+hide_edge_borders smart
+smart_gaps on
+gaps inner 8
+gaps outer 5
+bindsym $mod+Return exec $term
+bindsym Print exec $screenshot
+bindsym Shift+Print exec $screenclip
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym xf86MonBrightnessUp exec brightnessctl set 10%+
+bindsym xf86MonBrightnessDown exec brightnessctl set 10%-
+bindsym shift+xf86MonBrightnessUp exec brightnessctl set 5%+
+bindsym shift+xf86MonBrightnessDown exec brightnessctl set 5%-
+bindsym $mod+shift+d exec $menu
+bindsym $mod+shift+r exec $run
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+Escape exec $power
+bindsym $mod+End exec $wifi
+#bindsym Control+Space exec  dunstctl history-pop
+#bindsym Control+Shift+Space exec dunstctl close-all
+#####touchpad
+input type:touchpad {
+	tap enabled
+	natural_scroll disabled
+	click_method clickfinger
+	dwt enabled
+	accel_profile adaptive
+	pointer_accel 0.2
+	drag_lock disabled
+}
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+1   workspace $ws1
+bindsym $mod+2   workspace $ws2
+bindsym $mod+3   workspace $ws3
+bindsym $mod+4   workspace $ws4
+bindsym $mod+5   workspace $ws5
+bindsym $mod+Shift+1  move container to workspace $ws1
+bindsym $mod+Shift+2  move container to workspace $ws2
+bindsym $mod+Shift+3  move container to workspace $ws3
+bindsym $mod+Shift+4  move container to workspace $ws4
+bindsym $mod+Shift+5  move container to workspace $ws5
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+######Window Criteria
+focus_follows_mouse no
+#for_window [class="firefox"] floating enable
+for_window [app_id="pavucontrol"] floating enable 
+for_window [app_id="ghostty"] border none
+for_window [app_id="Thunar"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="utility"] floating enable
+for_window [window_type="toolbar"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_type="popup_menu"] floating enable
+for_window [window_type="tooltip"] floating enable
+for_window [window_type="notification"] floating enable
+######MODES
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    }
+bindsym $mod+r mode "resize"
+set $mode_system System
+mode "$mode_system" {
+    
+    bindsym l exec $lock, mode "default"
+    bindsym e exit
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym Shift+r exec --no-startup-id systemctl reboot --firmware-setup, mode "default"
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    }
+bindsym $mod+Shift+e exec dunstify "System" "l ->lock \n e-> exit \n s-> suspend \n r -> reboot \n S->shutdown \n R -> reboot" -t 3000,mode "$mode_system"
+mode "Executable" {
+  bindsym f exec firefox, mode "default"
+  bindsym c exec neovide, mode "default"
+  bindsym x exec nemo, mode "default"
+  bindsym t exec Telegram, mode "default"
+  bindsym l exec lutris, mode "default"
+  bindsym z exec evince, mode "default"
+  bindsym v exec vlc, mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  }
+  bindsym $mod+d exec dunstify "Apps" " f->firefox \n c->neovide \n x ->nemo \n z->evince \n l->lutris \n t->Telegram \n v->virual machines manager" -t 3000 ,mode "Executable"
+#######EXECS
+exec --no-startup-id dunst
+exec --no-startup-id libinput-gestures
+exec_always ~/.config/waybar/waybar.sh
+exec_always swaybg -i ~/.config/wallpapers/dark_mountains.jpg -m fill 
