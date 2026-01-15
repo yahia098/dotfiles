@@ -1,7 +1,0 @@
-# GIMP gimp-crop-tool options
-
-(foreground
-    (color "HSVA float" 16 "UUU\77\236\330B\77\236\47\55\77\0\0\200\77" 0))
-(pattern "Blue Web")
-
-# end of gimp-crop-tool options

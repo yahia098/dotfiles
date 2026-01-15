@@ -1,6 +1,3 @@
-require("core")
-require("Lazy")
-require("config")
-require("keymaps")
-require("theme")
-require("Neovide")
+require("config.lazy")
+vim.opt.clipboard:append("unnamedplus")
+
