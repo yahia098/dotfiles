@@ -1,24 +1,28 @@
 {
-  "margin-top": 5,
-  "margin-left": 10,
-  "margin-right": 10,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
   "modules-left": [
+    "sway/workspaces",
     "sway/window",
     "sway/mode"
   ],
   "modules-center": [
-    "sway/workspaces",
-  ],
+	  "clock"
+],
+
   "modules-right": [
     "pulseaudio",
     "network",
     "temperature",
-    "battery",
-    "clock",
+    "battery"
   ],
+
   "sway/window": {
     "format": "{}",
-    "max-length": 45,
+    "icon": true,
+    "expand": true,
+    "tooltip": false,
     "rewrite": {
       "": "Desktop"
     },
@@ -34,11 +38,7 @@
     "persistent-workspaces": {
       //"*": 6, // 5 workspaces by default on every monitor
       //"HDMI-A-1": 3 // but only three on HDMI-A-1
-    },
-  },
-  "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    }
   },
   "cpu": {
     "format": "  {usage}%",
@@ -74,6 +74,7 @@
       ""
     ],
     "interval": 5,
+    "on-click-right": "tlpui",
   },
   "network": {
     "format": "{ifname}",
@@ -94,7 +95,8 @@
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": "",
     "format-icons": {
-      "headphone": "",
+      "headphone": "󰋋",
+      "alsa_output.usb-Generic_USB_Audio_20210726905926-00.analog-stereo": "󰋋",
       "hands-free": "",
       "headset": "",
       "phone": "",
@@ -108,4 +110,30 @@
     },
     "on-click": "pavucontrol"
   },
-}
+  "clock": {
+	"format": "{:%H:%M}",
+	"format-alt": "{:%A, %B %d, %Y}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode"          : "year",
+		"mode-mon-col"  : 3,
+		"weeks-pos"     : "right",
+		"on-scroll"     : 1,
+		"on-click-right": "mode",
+		"format": {
+			"months":     "<span color='#ffead3'><b>{}</b></span>",
+			"days":       "<span color='#ecc6d9'><b>{}</b></span>",
+			"weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+			"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+			"today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+		}
+	},
+	"actions": {
+		"on-click-right": "mode",
+		"on-click-forward": "tz_up",
+		"on-click-backward": "tz_down",
+		"on-scroll-up": "shift_up",
+		"on-scroll-down": "shift_down"
+	}
+  }
+},

@@ -1,48 +1,54 @@
+@define-color base00 #282828;
+@define-color base01 #3C3836;
+@define-color base02 #504945;
+@define-color base03 #665C54;
+@define-color base04 #BDAE93;
+@define-color base06 #D5C4A1;
+@define-color base06 #EBDBB2;
+@define-color base07 #FBF1C7;
+@define-color base08 #FB4934;
+@define-color base09 #FE8019;
+@define-color base0A #FABD2F;
+@define-color base0B #B8BB26;
+@define-color base0C #8EC07C;
+@define-color base0D #83A598;
+@define-color base0E #D3869B;
+@define-color base0F #D65D0E;
 * {
 	font-family: "JetBrainsMono";
 }
 
 window {
-	background-color: #3B4252;
+	opacity: 0.85;
 }
 
 #input {
 	margin: 5px;
 	border-radius: 0px;
 	border: none;
-	background-color: #3B4252;
-	color: white;
+	background-color: #554444;
+	color: #8EC07C;
 }
 
 #inner-box {
-	background-color: #383C4A;
+	background-color: @base00;
+	color: @base06;
 }
 
 #outer-box {
 	margin: 2px;
 	padding: 10px;
-	background-color: #383C4A;
+	background-color: #base00;
+
 }
 
 #scroll {
 	margin: 5px;
+	background-color: @base00;
 }
 
 #text {
 	padding: 4px;
 	color: white;
 }
-
-#entry:nth-child(even){
-	background-color: #404552;
-}
-
-#entry:selected {
-	background-color: #4C566A;
-}
-
-#text:selected {
-	background: transparent;
-}
-
 
