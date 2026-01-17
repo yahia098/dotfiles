@@ -59,6 +59,7 @@ pavucontrol
 pipewire 
 pipewire-alsa 
 pipewire-pulse 
+pipewire-jack
 qbittorrent 
 rdma-core 
 reflector 
