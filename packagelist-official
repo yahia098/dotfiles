@@ -54,10 +54,7 @@ npm
 nvidia-open-dkms 
 nvidia-prime 
 nvidia-utils 
-nwg-look 
-ollama 
-ollama-cuda 
-ollama-rocm 
+nwg-look  
 openal 
 pamixer 
 pass 
