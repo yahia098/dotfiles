@@ -3,7 +3,6 @@ amd-ucode
 base 
 base-devel 
 bat 
-blender 
 bluez 
 bluez-utils 
 brightnessctl 
@@ -25,12 +24,10 @@ ghostscript
 ghostty 
 git 
 github-cli 
-glfw 
-godot 
+glfw  
 grim 
 grub 
-imagemagick 
-jdk21-openjdk 
+imagemagick  
 lemurs 
 lib32-mesa 
 lib32-nvidia-utils 
